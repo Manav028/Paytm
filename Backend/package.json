@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "decimal": "^0.0.2",
+    "decimal.js": "^10.4.3",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mon": "^0.0.8",
