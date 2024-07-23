@@ -47,7 +47,7 @@ router.post("/signup",async(req,res)=>{
             })
 
             const token = jwt.sign({userid:userid},JWT_PASS);
-            return res.json({msg:"User created succesfully Token : "+token});
+            return res.json({msg:"User created succesfully Token",token:token});
         }
     }else{
         res.json({msg:"Data is incorrect"});
@@ -63,7 +63,7 @@ router.post("/signin",async(req,res)=>{
         console.log(existuser)
         if(existuser){
             const token = jwt.sign({userid:existuser._id},JWT_PASS)
-            return res.json({msg:"User Sign in Succesfully Token : "+token})
+            return res.json({msg:"User Sign in Succesfully",token:token});
         }else{
             return res.json({msg:"User Need to create a Account / Check Email and password again"})
         }

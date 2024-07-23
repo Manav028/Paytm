@@ -6,12 +6,14 @@ import { Button } from '../components/Button'
 import { ButtonWarning } from '../components/BottonWaring'
 import axios from 'axios'
 import { useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className='bg-slate-300 h-screen flex justify-center items-center'>
@@ -35,7 +37,9 @@ const Signup = () => {
             },{
               headers: {'Content-Type':'application/json'}
             });
-            console.log(response.data)
+            localStorage.setItem("token",response.data.token);
+            console.log(response.data);
+            navigate("/dashboard");
           }
           catch (error) {
             console.error('Error during sign up : ', error.response ? error.response.data : error.message)
