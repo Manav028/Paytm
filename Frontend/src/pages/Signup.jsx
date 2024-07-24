@@ -20,7 +20,7 @@ const Signup = () => {
       <div className='bg-white w-3/12 h-fit flex flex-col justify-center p-8 gap-4 rounded-3xl'>
         <Heading label={"Sign Up"} />
         <SubHeading message={"Enter your information to create an account"} />
-        <Inputbox onChange={(e) => { console.log(firstname); setfirstname(e.target.value) }} label={"First Name"} placeholder={"Manav"} />
+        <Inputbox onChange={(e) => { setfirstname(e.target.value) }} label={"First Name"} placeholder={"Manav"} />
         <Inputbox onChange={(e) => { setlastname(e.target.value) }} label={"Last Name"} placeholder={"Patel"} />
         <Inputbox onChange={(e) => { setemail(e.target.value) }} label={"Email"} placeholder={"manavpatel.uk@gmail.com"} />
         <Inputbox onChange={(e) => { setpassword(e.target.value) }} label={"Password"} placeholder={"Manav123"} />

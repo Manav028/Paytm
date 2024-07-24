@@ -10,7 +10,8 @@ import axios from 'axios'
 
 const Signin = () => {
   const [email, setemail] = useState("");
-  const [password, setpassword] = useState("")
+  const [password, setpassword] = useState("");
+  const [message, setmessage] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -18,10 +19,11 @@ const Signin = () => {
       <div className='bg-white w-3/12 h-fit flex flex-col justify-center p-8 gap-4 rounded-3xl'>
       <Heading label={"Sign In"} />
       <SubHeading message = {"Enter your information to Sign In"} />
-      <Inputbox onChange={(e)=>{setemail(e.target.value)}} label={"Email"} placeholder={"manavpatel.uk@gmail.com"} />
-      <Inputbox onChange={(e)=>{setpassword(e.target.value)}} label={"Password"} placeholder={"Manav123"} />
+      <Inputbox onChange={(e)=>{setemail(e.target.value)}} label={"Email"} placeholder={"manavpatel.uk@gmail.com"}/>
+      <Inputbox onChange={(e)=>{setpassword(e.target.value)}} label={"Password"} placeholder={"Manav123"} type={"password"} />
       <Button onClick={async()=>{
         try{
+          setmessage("")
           const response = await axios.post("http://localhost:3000/api/v1/user/signin",{
             user:{
               email,
@@ -30,15 +32,21 @@ const Signin = () => {
           },{
             headers : {'Content-Type':'application/json'}
           });
-          console.log(response)
-          console.log(response.data);
-          localStorage.setItem("token",response.data.token)
+          if(response.data.token!==undefined){
+            localStorage.setItem("token",response.data.token)
+            setmessage(response.data.msg)
+            navigate("/dashboard")
+          }else{
+            
+            setmessage(response.data.msg)
+          }
         }catch(error){
-          console.log(response)
-        }
+          console.log(error.message)
+        } 
 
       }} label={"Sign In"} />
       <ButtonWarning label={"Don't have an account ?"} buttonlabel={"Sign up"} to={"/signup"}/>
+      {message && <h1>{message}</h1>}
       </div>
     </div>    
   )

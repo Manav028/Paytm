@@ -1,8 +1,8 @@
 
-export function Inputbox({label,placeholder,onChange}){
+export function Inputbox({label,placeholder,onChange,type="text"}){
     return <div>
     <h1 className="font-semibold mb-1"> {label} </h1>
-    <input 
+    <input type={type}
         onChange={onChange} 
         className="rounded outline-none w-full p-1.5 border-gray-200 border-2 focus:border-green-600" 
         placeholder={placeholder} /> 
