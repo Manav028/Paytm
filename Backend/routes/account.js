@@ -21,6 +21,7 @@ router.post("/transfer", authmiddleware, async (req, res) => {
     session.startTransaction();
 
     const { amount, to } = req.body;
+    console.log(to,amount)
     const fromaccount = await Account.findOne({ userid: req.userID }).session(session);
 
     if (!fromaccount) {

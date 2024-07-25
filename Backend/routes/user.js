@@ -92,8 +92,10 @@ router.get("/search",async(req,res)=>{
         [{firstname:{"$regex":editfilter}},{lastname:{"$regex":editfilter}},
         {firstname:{"$regex":editfilter2}},{lastname:{"$regex":editfilter2}}
     ]})
+    console.log(users)
     res.json({
         user : users.map((userr)=>({
+            _id : userr._id,
             username : userr.email,
             firstname : userr.firstname,
             lastname : userr.lastname
@@ -104,6 +106,11 @@ router.get("/search",async(req,res)=>{
 router.get("/", (req, res) => {
     res.send("Welcome to the user registration API");
 });
+
+router.get("/userdata",authmiddleware,async(req,res)=>{
+    const existuser = await User.findOne({"_id":req.userID}).select('-password')
+    res.json({user:existuser})
+})
 
 module.exports = router;
 

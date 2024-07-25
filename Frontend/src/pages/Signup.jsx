@@ -16,14 +16,14 @@ const Signup = () => {
   const navigate = useNavigate();
 
   return (
-    <div className='bg-slate-300 h-screen flex justify-center items-center'>
-      <div className='bg-white w-3/12 h-fit flex flex-col justify-center p-8 gap-4 rounded-3xl'>
+    <div className='bg-slate-300 h-fit py-10 flex justify-center items-center'>
+      <div className='bg-white w-4/12 h-fit flex flex-col justify-center p-8 gap-4 rounded-3xl'>
         <Heading label={"Sign Up"} />
         <SubHeading message={"Enter your information to create an account"} />
         <Inputbox onChange={(e) => { setfirstname(e.target.value) }} label={"First Name"} placeholder={"Manav"} />
         <Inputbox onChange={(e) => { setlastname(e.target.value) }} label={"Last Name"} placeholder={"Patel"} />
         <Inputbox onChange={(e) => { setemail(e.target.value) }} label={"Email"} placeholder={"manavpatel.uk@gmail.com"} />
-        <Inputbox onChange={(e) => { setpassword(e.target.value) }} label={"Password"} placeholder={"Manav123"} />
+        <Inputbox onChange={(e) => { setpassword(e.target.value) }} label={"Password"} placeholder={"Manav123"} type='password'/>
         <Button onClick={async () => {
           console.log({ firstname, lastname, email, password })
           try {
